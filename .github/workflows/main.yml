@@ -33,7 +33,7 @@ jobs:
           uses: docker/login-action@v1
           env:
               GIT_USER: ${{ github.actor}}
-              GIT_TOKEN: ${{ secrets.GITHUB_TOKEN }]
+              GIT_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           with:
            registry: ghcr.io
            username: $env.GIT_USER
