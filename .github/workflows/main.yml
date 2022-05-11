@@ -32,4 +32,5 @@ jobs:
         - name: docker image build
           run:  |
            docker build -t flutter_firebase:1 .
+           echo "${{ secrets.GITHUB_TOKEN }}" | docker login -u https://ghcr.io -u Nandak99 --password-stdin
          
