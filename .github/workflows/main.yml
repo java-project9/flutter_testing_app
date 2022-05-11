@@ -49,7 +49,7 @@ jobs:
           # tags: ${{ env.REGISTRY }}/flutter:1
         - name: build image
           run:
-            docker build -t flutter:latest
+            docker build -t flutter:latest .
         - name: listing images
           run: 
              docker images
