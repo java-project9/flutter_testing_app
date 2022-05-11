@@ -44,4 +44,4 @@ jobs:
            context: .
            file: ./Dockerfile
            push: true
-           tags: ${{ env.REGISTRY }}/nanda:latest
+           tags: ${{ env.REGISTRY }}/flutter:latest
