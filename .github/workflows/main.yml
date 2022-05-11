@@ -1,0 +1,36 @@
+name: Build and Release APK
+on: push
+jobs:
+    hosting:
+      name: Deploy Website
+      runs-on: ubuntu-latest
+      steps:
+        # Checkout Repository
+        - uses: actions/checkout@v1
+
+        # Install Flutter command
+        - uses: subosito/flutter-action@v1
+          with:
+            channel: 'dev'
+
+        # Build Website
+        - name: Build Website
+          run: |
+            flutter config --enable-web
+            flutter build web
+
+        # Deploy Firebase Hosting
+        #- name: Deploy Firebase Hosting
+        #  uses: w9jds/firebase-action@master
+        #  with:
+         #   args: deploy --only hosting:flutter-webhost
+         # env:
+         #   FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+          #  PROJECT_PATH: ./build/web
+        - name: creating container
+          uses: docker/setup-buildx-action@v1
+        - name: docker image build
+          run:  |
+            docker build -t flutter_firebase:1 .
+            echo $CR_PAT | docker login ghcr.io -u Nandak99 --password-stdin
+            dokcer push ghcr.io/Nandak99/flutter_firebase:1
