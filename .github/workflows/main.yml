@@ -38,21 +38,17 @@ jobs:
            registry: ghcr.io
            username: $env.GIT_USER
            password: ${{ env.GIT_TOKEN }}
-        #- name: build & publis docker image
-         # uses: docker/build-push-action@v2
-          #env: 
-           #   REGISTRY: ghcr.io
-         # with:
-          # context: .
-          # file: ./Dockerfile
-          # push: true
-          # tags: ${{ env.REGISTRY }}/flutter:1
-        - name: build image
-          run:
-            docker build -t flutter:latest .
+        - name: build & publis docker image
+          uses: docker/build-push-action@v2
+          env: 
+              REGISTRY: ghcr.io
+          with:
+           context: .
+           file: ./Dockerfile
+           push: true
+           tags: ${{ env.REGISTRY }}/${{ github.repository }}/flutter:1
+        
         - name: listing images
           run: 
              docker images
-        - name: publis image
-          run:
-            docker push flutter:latest
+       
