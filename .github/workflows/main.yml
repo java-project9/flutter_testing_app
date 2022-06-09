@@ -20,13 +20,13 @@ jobs:
             flutter build web
 
         # Deploy Firebase Hosting
-        #- name: Deploy Firebase Hosting
-        #  uses: w9jds/firebase-action@master
-        #  with:
-         #   args: deploy --only hosting:flutter-webhost
-         # env:
-         #   FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
-          #  PROJECT_PATH: ./build/web
+        - name: Deploy Firebase Hosting
+          uses: w9jds/firebase-action@master
+          with:
+            args: deploy --only hosting:flutter-webhost
+          env:
+            FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+            PROJECT_PATH: ./build/web
         - name: creating container env
           uses: docker/setup-buildx-action@v1
         - name: docker login 
