@@ -1,0 +1,16 @@
+name: firebase Hosting
+on: push
+jobs:
+    hosting:
+      name: Deploy Website
+      runs-on: ubuntu-latest
+      steps:
+        # Checkout Repository
+        - uses: actions/checkout@v1
+        - name: Deploy Firebase Hosting
+          uses: w9jds/firebase-action@master
+          with:
+               args: deploy --only hosting:sonyhistoryauthapp
+          env:
+               FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+               PROJECT_PATH: ./build/web
